@@ -142,7 +142,7 @@ const Hero: FC = () => {
         <div className="hero-text">
           <h1>Hi, I'm William</h1>
           <p>
-            I graduated from Stanford in 2025 with MS &amp; BS degrees in Computer Science, specializing in Artificial Intelligence. My passion lies in AI agents and innovative games. Past projects include reinforcement learning bots, blockchain projects, game development, VR/AR, and full-stack web development.
+            I graduated from Stanford in 2025 with MS &amp; BS degrees in Computer Science, specializing in Artificial Intelligence. My passion lies in AI agents and innovative games. In the past, I've created reinforcement learning bots, video games, VR/AR projects, blockchain tools, and full-stack web apps.
           </p>
         </div>
       </div>
