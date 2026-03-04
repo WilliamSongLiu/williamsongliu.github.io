@@ -12,7 +12,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "u/haikusbot",
-    description: "Developed the #1 most popular Reddit bot of all time, with over 4.7 million karma and counting.",
+    description: "Developed the #1 most popular Reddit bot of all time, with over 5 million karma and counting.",
     image: "images/haikusbot.png",
     tags: ["Bot", "Python"],
     links: [
