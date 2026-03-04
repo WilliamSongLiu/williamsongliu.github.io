@@ -7,19 +7,23 @@ const Hero: FC = () => {
 
   useEffect(() => {
     if (!mountRef.current) return;
+    const mount = mountRef.current;
 
     const scene = new THREE.Scene();
 
     // Create isometric camera
-    const aspect = window.innerWidth / window.innerHeight;
+    const width = mount.offsetWidth;
+    const height = mount.offsetHeight;
+    const aspect = width / height;
     const d = 5;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 1000);
     camera.position.set(d, d, d);
     camera.lookAt(scene.position);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    mount.appendChild(renderer.domElement);
 
     // Create different geometries with varied sizes
     const cubeGeometry = new THREE.BoxGeometry(2, 2, 2);
@@ -82,8 +86,9 @@ const Hero: FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
 
     // Animation
+    let requestRef: number;
     const animate = () => {
-      requestAnimationFrame(animate);
+      requestRef = requestAnimationFrame(animate);
 
       const time = Date.now() * 0.001;
       const amplitude = 0.15;
@@ -106,13 +111,18 @@ const Hero: FC = () => {
     animate();
 
     const handleResize = () => {
-      const newAspect = window.innerWidth / window.innerHeight;
+      const newWidth = mount.offsetWidth;
+      const newHeight = mount.offsetHeight;
+      const newAspect = newWidth / newHeight;
+
       camera.left = -d * newAspect;
       camera.right = d * newAspect;
       camera.top = d;
       camera.bottom = -d;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(newWidth, newHeight);
     };
 
     window.addEventListener('resize', handleResize);
@@ -120,7 +130,8 @@ const Hero: FC = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      mountRef.current?.removeChild(renderer.domElement);
+      cancelAnimationFrame(requestRef);
+      mount.removeChild(renderer.domElement);
     };
   }, []);
 
