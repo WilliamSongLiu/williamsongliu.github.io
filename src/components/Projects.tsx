@@ -40,7 +40,7 @@ const projects: Project[] = [
   },
   {
     title: "LLM Jailbreaking Competitions",
-    description: "Developed an automated LLM prompt optimization factory to discover jailbreaks in GPT-4o and Claude 3.5 Sonnet-based AI agents, winning over $20,000 in prizes.",
+    description: "Developed an automated LLM prompt optimization factory to discover jailbreaks in GPT-4o and Claude 3.5 Sonnet-based AI agents, winning 2 competitions.",
     image: "images/jailbreak.jpg",
     tags: ["AI", "LLM", "Prompt Engineering"],
     links: []
